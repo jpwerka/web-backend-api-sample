@@ -1,19 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { dataService, IBackendService, IInterceptorUtils, ResponseInterceptorFn } from 'web-backend-api/database';
-import { collectionName, outboundDocuments, transformPost, transformPut } from './outbound-documents.mock';
-import { IOutboundDocument } from 'src/app/entities/outbound-document/outbound-document.interface';
+import { dataService, IBackendService, IInterceptorUtils, ResponseInterceptorFn } from 'web-backend-api';
+import { ICustomer } from '../../src/app/customer/entities/customer.interface';
+import { IOutboundDocument } from '../../src/app/outbound-document/entities/outbound-document.interface';
 import { collectionName as customerCollection } from '../customers/customers.mock';
-import { map } from 'rxjs/operators';
-import { ICustomer } from '../../src/app/entities/customer/customer.interface';
-import { from } from 'rxjs';
+import { collectionName, outboundDocuments, transformPost, transformPut } from './outbound-documents.mock';
 
-const transformGetEntity = (document: IOutboundDocument, dbService: IBackendService) => {
-  return from(dbService.getInstance$(customerCollection, document.customerId)).pipe(
-    map((customer: ICustomer) => {
-      document['customer'] = customer;
-      return document;
-    })
-  );
+const transformGetEntity = async (document: IOutboundDocument, dbService: IBackendService) => {
+  const customer = await dbService.getInstance$<ICustomer>(customerCollection, document.customerId);
+  document['customer'] = customer;
+  return document;
 };
 
 // configuration for collection `Outbound Documents`
@@ -72,7 +67,7 @@ dataService(collectionName, (dbService: IBackendService) => {
     collectionName,
     response: (utils: IInterceptorUtils) => {
       const identifier = Math.floor(Math.random() * (9000000000 - 1000000000)) + 1000000000;
-      return utils.fn.response(utils.url, 200, {identifier});
+      return utils.fn.response(utils.url, 200, { identifier });
     }
   });
 

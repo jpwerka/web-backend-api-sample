@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IProduct } from '../../entities/product/product.interface';
+import { IProduct } from '../entities/product.interface';
 
 @Injectable()
 export class ProductService {

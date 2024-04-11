@@ -1,4 +1,4 @@
-import { ICustomer } from '../customer/customer.interface';
+import { ICustomer } from '../../customer/entities/customer.interface';
 
 export interface IOutboundDocumentItems {
   productId: number;

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 
 export interface IModalAction {
@@ -6,8 +7,12 @@ export interface IModalAction {
 }
 
 @Component({
+  standalone: true,
   selector: 'app-modal',
-  templateUrl: './modal.component.html'
+  templateUrl: './modal.component.html',
+  imports: [
+    CommonModule
+  ]
 })
 export class ModalComponent implements OnInit {
   // Controla se a modal fica oculto ou visível, por padrão é oculto

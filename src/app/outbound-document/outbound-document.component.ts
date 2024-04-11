@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, ReactiveFormsModule, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { IModalAction, ModalComponent } from '../components/modal/modal.component';
-import { ICustomer } from '../entities/customer/customer.interface';
-import { IOutboundDocument, IOutboundDocumentItems } from '../entities/outbound-document/outbound-document.interface';
-import { IProduct } from '../entities/product/product.interface';
-import { CustomerService } from '../services/customer/customer-service';
-import { OutboundDocumentService } from '../services/outbound-document/outbound-document.service';
-import { ProductService } from '../services/product/product-service';
+import { ICustomer } from '../customer/entities/customer.interface';
+import { IOutboundDocument, IOutboundDocumentItems } from './entities/outbound-document.interface';
+import { IProduct } from '../product/entities/product.interface';
+import { CustomerService } from '../customer/services/customer-service';
+import { OutboundDocumentService } from './services/outbound-document.service';
+import { ProductService } from '../product/services/product-service';
+import { CommonModule } from '@angular/common';
 
 function nonZero(control: AbstractControl): { [key: string]: unknown; } {
   if (Number(control.value) <= 0) {
@@ -18,9 +19,14 @@ function nonZero(control: AbstractControl): { [key: string]: unknown; } {
 }
 
 @Component({
+  standalone: true,
   selector: 'app-outbound-document',
   templateUrl: './outbound-document.component.html',
-  styleUrls: ['./outbound-document.component.css'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ModalComponent
+  ],
   providers: [
     OutboundDocumentService,
     CustomerService,

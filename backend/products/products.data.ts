@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { dataService, IBackendService, ResponseInterceptorFn, IInterceptorUtils } from 'web-backend-api/database';
+import { dataService, IBackendService, ResponseInterceptorFn, IInterceptorUtils } from 'web-backend-api';
 import { collectionName, products } from './products.mock';
 
 dataService(collectionName, (dbService: IBackendService) => {

@@ -1,4 +1,4 @@
-import { IProduct } from 'src/app/entities/product/product.interface';
+import { IProduct } from '../../src/app/product/entities/product.interface';
 
 export const collectionName = 'products';
 

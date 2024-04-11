@@ -1,14 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, ReactiveFormsModule, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { IModalAction, ModalComponent } from '../components/modal/modal.component';
-import { ICustomer } from '../entities/customer/customer.interface';
-import { CustomerService } from '../services/customer/customer-service';
+import { ICustomer } from './entities/customer.interface';
+import { CustomerService } from './services/customer-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-customer',
   templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ModalComponent
+  ],
   providers: [CustomerService]
 })
 export class CustomerComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { IOutboundDocument } from '../outbound-document/outbound-document.interface';
+import { IOutboundDocument } from '../../outbound-document/entities/outbound-document.interface';
 
 export interface IOutboundLoad {
   id?: number;

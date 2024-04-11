@@ -1,14 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, ReactiveFormsModule, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { IModalAction, ModalComponent } from '../components/modal/modal.component';
-import { IProduct } from '../entities/product/product.interface';
-import { ProductService } from '../services/product/product-service';
+import { IProduct } from './entities/product.interface';
+import { ProductService } from './services/product-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ModalComponent
+  ],
   providers: [ProductService]
 })
 export class ProductComponent implements OnInit {

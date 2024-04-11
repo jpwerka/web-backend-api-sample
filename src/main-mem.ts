@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { BackendConfigArgs, setupBackend } from 'web-backend-api/database';
+import { BackendConfigArgs, setupBackend } from 'web-backend-api';
 import '../backend/customers/customers.data';
 import '../backend/outbound-documents/outbound-documents.data';
 import '../backend/outbound-loads/outbound-loads.data';
@@ -16,16 +16,15 @@ if (environment.production) {
   enableProdMode();
 }
 
-// declare const require: any;
+const context = (import.meta as any).webpackContext(
+  '../backend/',
+  { recursive: true, regExp: /\.data\.ts$/ }
+);
 
-// Then we find all the mocks.
-// const context = require.context('../backend/', true, /\.data\.ts$/);
-
-// And load the modules.
-// context.keys().map(context);
+context.keys().map(context);
 
 const config: BackendConfigArgs = {
-  returnItemIn201: false, // return the item in body after POST
+  returnItemIn201: true, // return the item in body after POST
   put204: false, // return the item in body after PUT
   pageEncapsulation: false,
   log: true

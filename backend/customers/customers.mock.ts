@@ -1,4 +1,4 @@
-import { ICustomer } from 'src/app/entities/customer/customer.interface';
+import { ICustomer } from '../../src/app/customer/entities/customer.interface';
 
 export const collectionName = 'customers';
 

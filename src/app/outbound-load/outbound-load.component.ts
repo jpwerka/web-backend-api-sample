@@ -1,16 +1,22 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, ReactiveFormsModule, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { from, of } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 import { IModalAction, ModalComponent } from '../components/modal/modal.component';
-import { IOutboundDocument } from '../entities/outbound-document/outbound-document.interface';
-import { IOutboundLoad } from '../entities/outbound-load/outbound-load.interface';
-import { OutboundLoadService } from '../services/outbound-load/outbound-load.service';
+import { IOutboundDocument } from '../outbound-document/entities/outbound-document.interface';
+import { IOutboundLoad } from './entities/outbound-load.interface';
+import { OutboundLoadService } from './services/outbound-load.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-outbound-load',
   templateUrl: './outbound-load.component.html',
-  styleUrls: ['./outbound-load.component.css'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ModalComponent
+  ],
   providers: [OutboundLoadService]
 })
 export class OutboundLoadComponent implements OnInit {

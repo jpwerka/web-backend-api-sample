@@ -1,11 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DownloadDataService, GetDataType, ITypescriptInfo } from 'web-backend-api/angular';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DownloadDataService, GetDataType, ITypescriptInfo } from './service/download-data.service';
 
 @Component({
+  standalone: true,
   selector: 'app-download-data',
   templateUrl: './download-data.component.html',
-  styleUrls: ['./download-data.component.css']
+  styleUrls: ['./download-data.component.css'],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+  ],
+  providers: [
+    DownloadDataService
+  ]
 })
 export class DownloadDataComponent implements OnInit {
 

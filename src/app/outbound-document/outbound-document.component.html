@@ -25,7 +25,7 @@
     <tr *ngFor="let outboundDocument of outboundDocuments">
       <td style="text-align: right;">{{ outboundDocument.id }}</td>
       <td>{{ outboundDocument.identifier }}</td>
-      <td>{{ outboundDocument.customer.name }}</td>
+      <td>{{ outboundDocument.customer?.name }}</td>
       <td style="text-align: center;">{{ outboundDocument.createdAt | date : 'dd/MM/yyyy' }}</td>
       <td style="text-align: center;">{{ outboundDocument.updatedAt | date : 'dd/MM/yyyy' }}</td>
       <td style="text-align: center;">{{ outboundDocument.isLoaded ? '☒' : '☐' }}</td>
