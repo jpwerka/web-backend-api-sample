@@ -5,7 +5,7 @@
     "types": []
   },
   "files": [
-    "src/main-mem.ts",
+    "src/main-mock.ts",
     "src/polyfills.ts"
   ],
   "include": [

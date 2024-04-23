@@ -1,32 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CustomerComponent } from './customer/customer.component';
 import { DownloadDataComponent } from './download-data/download-data.component';
-import { OutboundDocumentComponent } from './outbound-document/outbound-document.component';
-import { OutboundLoadComponent } from './outbound-load/outbound-load.component';
-import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/',
-    pathMatch: 'full'
-  },
-  {
     path: 'products',
-    component: ProductComponent,
+    loadComponent: () =>
+      import('./product/product.component')
+        .then(m => m.ProductComponent)
   },
   {
     path: 'customers',
-    component: CustomerComponent,
+    loadComponent: () =>
+      import('./customer/customer.component')
+        .then(m => m.CustomerComponent)
   },
   {
     path: 'outbound-documents',
-    component: OutboundDocumentComponent,
+    loadComponent: () =>
+      import('./outbound-document/outbound-document.component')
+        .then(m => m.OutboundDocumentComponent)
   },
   {
     path: 'outbound-loads',
-    component: OutboundLoadComponent,
+    loadComponent: () =>
+      import('./outbound-load/outbound-load.component')
+        .then(m => m.OutboundLoadComponent)
   },
   {
     path: 'download-data',
@@ -34,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/',
+    redirectTo: '',
     pathMatch: 'full'
   }
 ];
