@@ -3,6 +3,7 @@ import { HttpBackend, HttpErrorResponse, HttpEvent, HttpHeaders, HttpRequest, Ht
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { Observable, from, throwError } from 'rxjs';
 import { IBackendService, IErrorMessage, STATUS, getStatusText } from 'web-backend-api';
+import { STATUS_CODE_INFO } from 'web-backend-api/utils/http-status-codes';
 
 export const BACKEND_SERVICE = new InjectionToken<IBackendService>('backend.service');
 
@@ -21,7 +22,7 @@ export class HttpMockBackendService implements HttpBackend {
 
   handle(req: HttpRequest<unknown>): Observable<HttpEvent<unknown>> {
     try {
-      return from(this.dbService.handleRequest<HttpEvent<unknown>>(req));
+      return from(this.dbService.handleRequest(req)) as Observable<HttpEvent<unknown>> ;
     } catch (error) {
       const err: unknown = (error as Error).message || error;
       const resOptions = this.createErrorResponseOptions(req.url, STATUS.INTERNAL_SERVER_ERROR, err);
@@ -37,7 +38,7 @@ export class HttpMockBackendService implements HttpBackend {
         new HttpHeaders({ 'Content-Type': 'text/html; charset=utf-8' }) :
         new HttpHeaders({ 'Content-Type': 'application/json' }),
       status,
-      statusText: getStatusText(status)
+      statusText: getStatusText(status as keyof typeof STATUS_CODE_INFO)
     });
   }
 
@@ -53,7 +54,7 @@ export class HttpMockBackendService implements HttpBackend {
       url,
       headers,
       status,
-      statusText: getStatusText(status)
+      statusText: getStatusText(status as keyof typeof STATUS_CODE_INFO)
     });
   }
 

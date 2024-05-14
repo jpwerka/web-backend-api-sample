@@ -52,10 +52,9 @@
     "@angular/language-service": "^17.3.4",
     "@types/node": "^18.13.0",
     "json.date-extensions": "^1.2.2",
-    "clonedeep": "^2.0.0",
     "json5": "^2.1.1",
     "uuid": "^9.0.0",
     "typescript": "~5.4.5",
-    "web-backend-api": "7.0.0"
+    "web-backend-api": "7.0.1"
   }
 }
